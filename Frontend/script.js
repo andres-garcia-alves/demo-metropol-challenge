@@ -62,7 +62,7 @@ function validarFormulario() {
         { id: 'apellido', nombre: 'Apellido' },
         { id: 'dni', nombre: 'DNI' },
         { id: 'sexo', nombre: 'Sexo' },
-        { id: 'mail', nombre: 'Mail' }
+        { id: 'mail', nombre: 'Correo electrónico' }
     ];
 
     // Validación: Todos los campos obligatorios
@@ -71,7 +71,7 @@ function validarFormulario() {
         const valor = elemento.value.trim();
 
         if (valor === "") {
-            mostrarToast(`Che, te olvidaste de completar el campo "${campo.nombre}".`, 'error');
+            mostrarToast(`Falta completar el campo "${campo.nombre}".`, 'error');
             elemento.focus();
             return false;
         }
@@ -152,7 +152,7 @@ async function enviarDatos() {
     } catch (error) {
         // En caso de excepción al enviar (ej. error de red)
         console.error("Falla en el envío:", error);
-        mostrarToast("Hubo un problema al enviar los datos. Chequeá la consola.", 'error');
+        mostrarToast("Hubo un problema al enviar los datos.", 'error');
     }
 }
 
