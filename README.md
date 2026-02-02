@@ -14,7 +14,7 @@ A demo project for a Metropol's job application.
 |------------------------------------------|------------------------------------------|
 | ![](Resources/screenshot-03.png)         | ![](Resources/screenshot-04.png)         |
 
-| CI/CD                                    |                                          |
+| CI/CD                                    | -                                        |
 |------------------------------------------|------------------------------------------|
 | ![](Resources/screenshot-05.png)         | ![](Resources/screenshot-06.png)         |
 
