@@ -14,12 +14,14 @@ namespace Backend.Controllers
         private readonly IPersonaRepository _repository;
         private readonly IMapper _mapper;
         private readonly IValidator<Persona> _validator;
+        private readonly ILogger<PersonasController> _logger;
 
-        public PersonasController(IPersonaRepository repository, IMapper mapper, IValidator<Persona> validator)
+        public PersonasController(IPersonaRepository repository, IMapper mapper, IValidator<Persona> validator, ILogger<PersonasController> logger)
         {
             _repository = repository;
             _mapper = mapper;
             _validator = validator;
+            _logger = logger;
         }
 
         /// <summary>
@@ -34,8 +36,9 @@ namespace Backend.Controllers
                 var personasDto = _mapper.Map<IEnumerable<PersonaDTO>>(personas);
                 return Ok(personasDto);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al obtener todas las personas.");
                 return StatusCode(500, new { message = "Error procesando datos" });
             }
         }
@@ -56,6 +59,7 @@ namespace Backend.Controllers
 
                 if (!validationResult.IsValid)
                 {
+                    _logger.LogWarning("Validación fallida para la persona con DNI: {DNI}. Errores: {Errors}", personaDto.DNI, string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
                     return BadRequest(new { message = "Error procesando datos", errors = validationResult.Errors.Select(e => e.ErrorMessage) });
                 }
 
@@ -65,8 +69,9 @@ namespace Backend.Controllers
                 // Respuesta exitosa según consigna
                 return Ok(new { message = $"Se recibió el nombre '{persona.Nombre}'" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error al procesar el registro de la persona con DNI: {DNI}", personaDto.DNI);
                 // Manejo de errores básico según consigna
                 return StatusCode(500, new { message = "Error procesando datos" });
             }

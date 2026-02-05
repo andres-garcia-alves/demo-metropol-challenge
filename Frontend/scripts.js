@@ -136,7 +136,7 @@ async function enviarDatos() {
 
     try {
         // Enviar datos al endpoint local de .NET
-        const respuesta = await fetch('http://localhost:5105/api/personas', {
+        const respuesta = await fetch('https://localhost:5000/api/personas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
