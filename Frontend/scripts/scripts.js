@@ -76,7 +76,8 @@ async function enviarDatos() {
 
     const formulario = document.querySelector('#formularioRegistro');
     const sucessMessage = "¡Datos enviados con éxito!";
-    const errorMessage = "Error procesando los datos";
+    const errorMessage1 = "Error procesando los datos.";
+    const errorMessage2 = "Falló el envío de los datos.";
     
     // convertir los datos a un objeto simple (DNI sin puntos)
     const datos = {
@@ -104,12 +105,12 @@ async function enviarDatos() {
         } else {
             // manejo de errores controlados por el backend (BadRequest, etc)
             console.error("Error en el servidor:", resultado);
-            mostrarToast(resultado.message || errorMessage, 'error');
+            mostrarToast(resultado.message || errorMessage1, 'error');
         }
 
     } catch (error) {
         // en caso de excepción al enviar (ej. error de red)
-        console.error("Falla en el envío:", error);
-        mostrarToast(errorMessage, 'error');
+        console.error("Falló el envío de los datos:", error);
+        mostrarToast(errorMessage2, 'error');
     }
 }
