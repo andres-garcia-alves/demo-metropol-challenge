@@ -45,7 +45,7 @@ function validarFormulario() {
     }
 
     if (valueDNI.length !== 8) {
-        mostrarToast("El DNI está incompleto (deben ser 8 números).", 'error');
+        mostrarToast("El DNI no es correcto (deben ser 8 números).", 'error');
         inputDNI.focus();
         return false;
     }
