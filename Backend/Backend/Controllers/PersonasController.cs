@@ -38,8 +38,8 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener todas las personas.");
-                return StatusCode(500, new { message = "Error procesando datos" });
+                _logger.LogError(ex, "Error al obtener todas las personas.");       // guardar en logs
+                return StatusCode(500, new { message = "Error procesando datos" }); // según consigna
             }
         }
 
@@ -71,9 +71,8 @@ namespace Backend.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al procesar el registro de la persona con DNI: {DNI}", personaDto.DNI);
-                // Manejo de errores básico según consigna
-                return StatusCode(500, new { message = "Error procesando datos" });
+                _logger.LogError(ex, "Error al procesar el registro de la persona con DNI: {DNI}", personaDto.DNI); // guardar en logs
+                return StatusCode(500, new { message = "Error procesando datos" }); // según consigna
             }
         }
     }

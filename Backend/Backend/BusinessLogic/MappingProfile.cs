@@ -9,7 +9,7 @@ namespace Backend.BusinessLogic
         public MappingProfile()
         {
             // Mapeo entre DTO y Entidad
-            CreateMap<PersonaDTO, Persona>();
+            CreateMap<PersonaDTO, Persona>().ReverseMap();
         }
     }
 }
