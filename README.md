@@ -1,43 +1,46 @@
 # Metropol Challenge
 
-> Proyecto demo para la solicitud de empleo en Metropol.
+&nbsp;
+
+Proyecto demo para la solicitud de empleo en Metropol.
+
+**LIVE APP**: https://andres-garcia-alves.github.io/demo-metropol-challenge/
 
 &nbsp;
 
-## Listado parcial de features:
+## Listado de Features:
 
-### FRONTEND
+#### - FRONTEND
 
 - Uso los íconos y tipografía oficial (open sans) de la marca.
 
-- Diseño `responsive`
-  - 3 breaking-points: grande, medio (tablets) y pequeño (smartphones)
+- Diseño `responsive`:
+  - 3 breaking-points: **grande**, **medio** (tablets) y **pequeño** (smartphones)
   - Stackeo de los bloques de contenido
 
 - Única salvedad respecto a no usar frameworks:
-  - Agregué la librería `Tailwind CSS`, que no es framework/librería de JavaScript sino de CSS
-  - Sin estilos el front se veía espantoso 😅
-  - La utilizo vía CDN, no requiere instalación
+  - Agregué la librería `Tailwind CSS`, que no es framework/librería de JavaScript sino de CSS.
+  - Sin estilos el front se veía espantoso. 😅
+  - La utilizo vía CDN, no requiere instalación.
   - ¿Lo puedo hacer con el CSS a mano? Sí, definitivamente, pero para una demo me parece que no valía la pena.
   - Si lo requieren ¡avisen!, cero drama de hacer los estilos con CSS plano.
 
+#### - BACKEND
 
-### BACKEND
-
-- Desarrollado en .NET 10 (versión recién salida del horno)
+- Desarrollado en .NET 10 (versión recién salida del horno).
   - Desconozco las herramientas que tenga instaladas quien evalúe la demo.
   - Si prefieren por compatibilidad que utilice alguna versión previa, avisen, que sería un cambio de 5 minutos.
 
-- Detalle de la estrucutra del backend
+- Detalle de la estructura del backend:
   - `Controllers/`: Endpoints de la API.
   - `DataAccess/`: Contexto de base de datos.
   - `Entities/`: Modelos de datos para persistencia.
   - `DTOs/`: Objetos de transferencia de datos.
   - `BusinessLogic/`: Mapeos y reglas de validación.
 
-- Uso de la librería `FluentValidations` para las validaciones de las entidades.
+- Uso de la librería `FluentValidations` para validación de entidades.
 
-- Uso de `AutoMapper` para los mapeos entre los DTOs y las Entidades.
+- Uso de `AutoMapper` para mapeos entre DTOs y Entidades.
 
 - Patrón de diseño `Repository` para la capa de acceso a datos.
 - Uso de `SQlite` para la DB (por mepa simplicidad, ya que no requiere un server externo).
@@ -62,11 +65,7 @@
   - Uso de ramas `main` y `develop`.
   - Dado el alcance limitado de la demo, omití los branches independientes por feature individual.
 
-
-### PROYECTO
-
-- **LIVE DEMO**:
-  <...>
+#### - PROYECTO
 
 - Implemento **CI/CD** vía `GitHub Actions`.
   - Frontend alojado en `GitHub Pages`.
@@ -75,23 +74,49 @@
 - Repo del proyecto:  
   https://github.com/andres-garcia-alves/demo-metropol-challenge
 
-
-### NOTAS
+#### - NOTAS
 
 - Hay cosas que obviamente se pueden mejorar, pero que sobrepasarían el alcance de una demo:
   - Los controllers que hereden de un ControllerBase, centalizando logs y manejo de errores
   - Usar una DB en servidor aparte, en lugar de una DB embebida
+  - Uso de Caché (según el endpoint en cuestión) para mejorar performance y reducir consumo de recursos.
+  - Versionado de la API (ej. /api/v1/*, /api/v2/*).
   - etc
 
-- Aprovecho el repo de la demo, y los invito a visitar mi GitHub: son 40+ repos con aplicaciones web, desktop, IA, electrónica, videojuegos, etc... y según cada temática utilizando algunas de sus herramientas y tecnologías relevantes: .NET, frameworks para JavaScript/TypeScript, Python, C/C++, y un largo etc.
+- Aprovecho el repo de la demo, y los invito a visitar mi GitHub: son 40+ repos con aplicaciones web, desktop, IA, electrónica, videojuegos, etc... y según cada temática utilizando algunas de sus herramientas y tecnologías más relevantes: .NET, frameworks para JavaScript/TypeScript, Python, C/C++, y un largo etc.
 
-### Screenshots
+&nbsp;
+
+## Requisitos
+
+- SDK .NET 10
+- Para ejecutar el **backend** en local (paso a paso):
+
+  #1. Navegar a la carpeta del proyecto backend
+  <pre>cd ./Backend/Backend</pre>
+
+  #2. Restaurar dependencias y ejecutar
+  <pre>dotnet run</pre>
+
+- Para ejecutar el **frontend**en local (paso a paso):
+
+  - Opción A. Instalar la extensión `Live Server` de VSCode (mayor comodidad).
+  - Opción B. Navegar a la carpeta del proyecto frontend y doble click en el archivo `index.html` (mayor simpleza).
+    <pre>cd ./Frontend</pre>
+
+- Para ejecutar los test unitarios:
+
+  <pre>dotnet test Backend/UnitTests/UnitTests.csproj</pre>
+
+&nbsp;
+
+## Screenshots
 
 | Form. de Registro                        | Validaciones                             |
 |------------------------------------------|------------------------------------------|
 | ![](Resources/screenshot-01.png)         | ![](Resources/screenshot-02.png)         |
 
-| Responsive (Tablets)                     | Responsive (Mobile)                      |
+| Responsive: Tablets                      | Responsive: Mobile                       |
 |------------------------------------------|------------------------------------------|
 | ![](Resources/screenshot-03.png)         | ![](Resources/screenshot-04.png)         |
 
@@ -101,12 +126,13 @@
 
 &nbsp;
 
-### Version History
+## Version History
 
 v1.0 (2026.02.01) - First commit.  
 v1.1 (2026.02.02) - Added validations and responsive design.  
 v1.2 (2026.02.02) - Added CI/CD pipeline.  
-v1.3 (2026.02.05) - Added Backend base code.  
+v1.3 (2026.02.04) - Added Backend base code.  
+v1.4 (2026.02.05) - Minor source code improvements.  
 
 &nbsp;
 

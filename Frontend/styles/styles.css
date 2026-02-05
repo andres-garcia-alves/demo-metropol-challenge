@@ -1,0 +1,7 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
