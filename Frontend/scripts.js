@@ -1,6 +1,5 @@
 /**
- * script.js - Lógica para el formulario de registro (Metropol Challenge)
- * Requerimiento: Vanilla JS, ES-AR.
+ * scripts.js - Lógica para el formulario de registro
  */
 
 document.addEventListener('DOMContentLoaded', () => {
