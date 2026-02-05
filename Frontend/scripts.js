@@ -135,7 +135,8 @@ async function enviarDatos() {
     };
 
     try {
-        const respuesta = await fetch('https://ejemplo-api.com/registro', {
+        // Enviar datos al endpoint local de .NET
+        const respuesta = await fetch('http://localhost:5105/api/personas', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -143,15 +144,22 @@ async function enviarDatos() {
             body: JSON.stringify(datos)
         });
 
-        // Como no hay backend funcional aún, capturamos el resultado del fetch
         const resultado = await respuesta.json();
-        console.log("Respuesta del servidor:", resultado);
-        mostrarToast("¡Datos enviados con éxito!", 'exito');
+        
+        if (respuesta.ok) {
+            console.log("Respuesta del servidor:", resultado);
+            mostrarToast(resultado.message || "¡Datos enviados con éxito!", 'exito');
+            limpiarFormulario();
+        } else {
+            // Manejo de errores controlados por el backend (BadRequest, etc)
+            console.error("Error en el servidor:", resultado);
+            mostrarToast(resultado.message || "Error procesando datos", 'error');
+        }
 
     } catch (error) {
         // En caso de excepción al enviar (ej. error de red)
         console.error("Falla en el envío:", error);
-        mostrarToast("Hubo un problema al enviar los datos.", 'error');
+        mostrarToast("Error procesando datos", 'error');
     }
 }
 
