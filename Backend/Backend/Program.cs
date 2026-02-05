@@ -1,5 +1,7 @@
-using Backend.BusinessLogic;
+using Backend.BusinessLogic.Validators;
 using Backend.DataAccess;
+using Backend.DataAccess.Interfaces;
+using Backend.DTOs;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;

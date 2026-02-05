@@ -1,8 +1,7 @@
 using AutoMapper;
-using Backend.DTOs;
 using Backend.Entities;
 
-namespace Backend.BusinessLogic
+namespace Backend.DTOs
 {
     public class MappingProfile : Profile
     {

@@ -1,6 +1,6 @@
 using Backend.Entities;
 
-namespace Backend.DataAccess
+namespace Backend.DataAccess.Interfaces
 {
     public interface IPersonaRepository
     {

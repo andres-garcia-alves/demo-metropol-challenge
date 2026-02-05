@@ -8,5 +8,8 @@ namespace Backend.Entities
         public string DNI { get; set; } = string.Empty;
         public string Sexo { get; set; } = string.Empty;
         public string Mail { get; set; } = string.Empty;
+
+        // Acá podrían ir otras propiedades de la Entidad (que no pasan al DTO)
+        // Por ejemplo: PasswordHash, etc
     }
 }

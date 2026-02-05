@@ -1,9 +1,6 @@
-using AutoMapper;
-using Backend.DataAccess;
-using Backend.DTOs;
-using Backend.Entities;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using Backend.BusinessLogic.Interfaces;
+using Backend.DTOs;
 
 namespace Backend.Controllers
 {
@@ -11,29 +8,27 @@ namespace Backend.Controllers
     [Route("api/[controller]")]
     public class PersonasController : ControllerBase
     {
-        private readonly IPersonaRepository _repository;
-        private readonly IMapper _mapper;
-        private readonly IValidator<Persona> _validator;
+        private readonly IPersonaLogic _personaLogic;
         private readonly ILogger<PersonasController> _logger;
 
-        public PersonasController(IPersonaRepository repository, IMapper mapper, IValidator<Persona> validator, ILogger<PersonasController> logger)
+        public PersonasController(IPersonaLogic personaLogic, ILogger<PersonasController> logger)
         {
-            _repository = repository;
-            _mapper = mapper;
-            _validator = validator;
+            _personaLogic = personaLogic;
             _logger = logger;
         }
 
         /// <summary>
-        /// Obtiene todas las personas registradas en la base de datos.
+        /// Obtiene todas las personas registradas en la base de datos
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
-                var personas = await _repository.GetAllAsync();
-                var personasDto = _mapper.Map<IEnumerable<PersonaDTO>>(personas);
+                // Buscar los datos y mapear a DTOs
+                var personasDto = await _personaLogic.GetAll();
+
+                // Respuesta exitosa
                 return Ok(personasDto);
             }
             catch (Exception ex)
@@ -44,35 +39,32 @@ namespace Backend.Controllers
         }
 
         /// <summary>
-        /// Recibe la información de una persona, la valida, la guarda y retorna un mensaje de éxito.
+        /// Recibe la información de una persona, la valida, la guarda y retorna un mensaje de éxito
         /// </summary>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PersonaDTO personaDto)
         {
             try
             {
-                // Mapeo de DTO a Entidad
-                var persona = _mapper.Map<Persona>(personaDto);
 
-                // Validación de la entidad
-                var validationResult = await _validator.ValidateAsync(persona);
 
                 if (!validationResult.IsValid)
                 {
-                    _logger.LogWarning("Validación fallida para la persona con DNI: {DNI}. Errores: {Errors}", personaDto.DNI, string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
+                    _logger.LogWarning("Validación fallida la persona con DNI: {DNI}. Errores: {Errors}",
+                        personaDto.DNI, string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
                     return BadRequest(new { message = "Error procesando datos", errors = validationResult.Errors.Select(e => e.ErrorMessage) });
                 }
 
                 // Persistencia de los datos
                 await _repository.AddAsync(persona);
 
-                // Respuesta exitosa según consigna
-                return Ok(new { message = $"Se recibió el nombre '{persona.Nombre}'" });
+                // Respuesta exitosa
+                return Ok(new { message = $"Se recibió el nombre '{persona.Nombre}'" }); // según consigna
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al procesar el registro de la persona con DNI: {DNI}", personaDto.DNI); // guardar en logs
-                return StatusCode(500, new { message = "Error procesando datos" }); // según consigna
+                _logger.LogError(ex, "Error al procesar la persona con DNI: {DNI}", personaDto.DNI);    // guardar en logs
+                return StatusCode(500, new { message = "Error procesando datos" });                     // según consigna
             }
         }
     }
