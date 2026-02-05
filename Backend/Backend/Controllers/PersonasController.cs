@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend.BusinessLogic.Interfaces;
 using Backend.DTOs;
+using FluentValidation;
 
 namespace Backend.Controllers
 {
@@ -46,20 +47,15 @@ namespace Backend.Controllers
         {
             try
             {
-
-
-                if (!validationResult.IsValid)
-                {
-                    _logger.LogWarning("Validación fallida la persona con DNI: {DNI}. Errores: {Errors}",
-                        personaDto.DNI, string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
-                    return BadRequest(new { message = "Error procesando datos", errors = validationResult.Errors.Select(e => e.ErrorMessage) });
-                }
-
-                // Persistencia de los datos
-                await _repository.AddAsync(persona);
+                // Llamar a la lógica de negocio
+                await _personaLogic.Create(personaDto);
 
                 // Respuesta exitosa
-                return Ok(new { message = $"Se recibió el nombre '{persona.Nombre}'" }); // según consigna
+                return Ok(new { message = $"Se recibió el nombre '{ personaDto.Nombre }'" }); // según consigna
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { message = "Error procesando los datos", errors = ex.Errors.Select(e => e.ErrorMessage) });
             }
             catch (Exception ex)
             {

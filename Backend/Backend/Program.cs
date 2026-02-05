@@ -1,12 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Serilog;
+using Scalar.AspNetCore;
+using Backend.BusinessLogic;
+using Backend.BusinessLogic.Interfaces;
 using Backend.BusinessLogic.Validators;
 using Backend.DataAccess;
 using Backend.DataAccess.Interfaces;
 using Backend.DTOs;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
-using Scalar.AspNetCore;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,8 +35,9 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<PersonaValidator>();
 
-// Registro de Repositorio
+// Registro de Repositorio y Lógica de Negocio
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
+builder.Services.AddScoped<IPersonaLogic, PersonaLogic>();
 
 // Permitir CORS para el Frontend
 builder.Services.AddCors(options =>

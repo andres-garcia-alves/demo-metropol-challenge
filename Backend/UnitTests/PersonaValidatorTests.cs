@@ -1,13 +1,13 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Backend.BusinessLogic.Validators;
 using Backend.Entities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests
 {
     [TestClass]
     public class PersonaValidatorTests
     {
-        private PersonaValidator _validator;
+        public required PersonaValidator _validator;
 
         [TestInitialize]
         public void Setup()

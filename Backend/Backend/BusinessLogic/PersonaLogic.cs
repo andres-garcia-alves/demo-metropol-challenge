@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using AutoMapper;
+﻿using AutoMapper;
+using FluentValidation;
 using Backend.BusinessLogic.Interfaces;
 using Backend.DataAccess.Interfaces;
 using Backend.DTOs;
 using Backend.Entities;
-using FluentValidation;
-
 
 namespace Backend.BusinessLogic
 {
@@ -14,12 +12,14 @@ namespace Backend.BusinessLogic
         private readonly IMapper _mapper;
         private readonly IValidator<Persona> _validator;
         private readonly IPersonaRepository _repository;
+        private readonly ILogger<PersonaLogic> _logger;
 
-        public PersonaLogic(IMapper mapper, IValidator<Persona> validator, IPersonaRepository repository)
+        public PersonaLogic(IMapper mapper, IValidator<Persona> validator, IPersonaRepository repository, ILogger<PersonaLogic> logger)
         {
             _mapper = mapper;
             _validator = validator;
             _repository = repository;
+            _logger = logger;
         }
 
         public async Task<IEnumerable<PersonaDTO>> GetAll()
@@ -45,7 +45,8 @@ namespace Backend.BusinessLogic
             {
                 _logger.LogWarning("Validación fallida la persona con DNI: {DNI}. Errores: {Errors}",
                     personaDto.DNI, string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
-                return BadRequest(new { message = "Error procesando datos", errors = validationResult.Errors.Select(e => e.ErrorMessage) });
+                
+                throw new ValidationException(validationResult.Errors);
             }
 
             // persistencia de los datos
