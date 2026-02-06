@@ -55,12 +55,13 @@ namespace Backend.Controllers
             }
             catch (ValidationException ex)
             {
-                return BadRequest(new { message = "Error procesando los datos", errors = ex.Errors.Select(e => e.ErrorMessage) });
+                var errors = ex.Errors.Any() ? ex.Errors.Select(e => e.ErrorMessage) : [ex.Message];
+                return BadRequest(new { message = "Error al procesar los datos", errors });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error al procesar la persona con DNI: {DNI}", personaDto.DNI);    // guardar en logs
-                return StatusCode(500, new { message = "Error procesando datos" });                     // según consigna
+                return StatusCode(500, new { message = "Error al procesar los datos" });                // según consigna
             }
         }
     }

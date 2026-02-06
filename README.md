@@ -2,12 +2,12 @@
 
 Proyecto demo para la solicitud de empleo en Metropol.
 
-**LIVE APP**: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://andres-garcia-alves.github.io/demo-metropol-challenge/  
-
-**BACKEND API**: &nbsp;&nbsp;&nbsp; https://metropol-backend.azurewebsites.net/api/  
-  endpoint personas: https://metropol-backend.azurewebsites.net/api/personas/  
-
-**BACKEND DOCS**: &nbsp; https://metropol-backend.azurewebsites.net/scalar/v1  
+| Acceso                | URL                                                            |
+| --------------------- | -------------------------------------------------------------- |
+| **LIVE APP**          | https://andres-garcia-alves.github.io/demo-metropol-challenge/ |
+| **BACKEND API**       | https://metropol-backend.azurewebsites.net/api/                |
+| - Endpoint Personas   | https://metropol-backend.azurewebsites.net/api/personas/       |
+| **BACKEND DOCS**      | https://metropol-backend.azurewebsites.net/scalar/v1           |
 
 &nbsp;
 

@@ -81,10 +81,9 @@ function limpiarFormulario() {
  */
 async function enviarDatos() {
 
-    const formulario = document.querySelector('#formularioRegistro');
-    const sucessMessage = "¡Datos enviados con éxito!";
-    const errorMessage1 = "Error procesando los datos.";
-    const errorMessage2 = "Falló el envío de los datos.";
+    const mensajeExito = "¡Datos enviados con éxito!";
+    const mensajeErrorDatos = "Error al procesar los datos.";
+    const mensajeErrorRed = "Falló el envío de los datos.";
     
     // convertir los datos a un objeto simple (DNI sin puntos)
     const datos = {
@@ -107,17 +106,23 @@ async function enviarDatos() {
         
         if (respuesta.ok) {
             console.log("Respuesta del servidor:", resultado);
-            mostrarToast(resultado.message || sucessMessage, 'exito');
+            mostrarToast(resultado.message || mensajeExito, 'exito');
             limpiarFormulario();
         } else {
-            // manejo de errores controlados por el backend (BadRequest, etc)
+            // manejo de los errores controlados por el backend (ej. BadRequest)
             console.error("Error en el servidor:", resultado);
-            mostrarToast(resultado.message || errorMessage1, 'error');
+            
+            let mensajeCompleto = resultado.message || mensajeErrorDatos;
+            if (resultado.errors && resultado.errors.length > 0) {
+                mensajeCompleto += ". " + resultado.errors.join(". ");
+            }
+
+            mostrarToast(mensajeCompleto, 'error');
         }
 
     } catch (error) {
         // en caso de excepción al enviar (ej. error de red)
         console.error("Falló el envío de los datos:", error);
-        mostrarToast(errorMessage2, 'error');
+        mostrarToast(mensajeErrorRed, 'error');
     }
 }
