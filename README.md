@@ -129,6 +129,10 @@ Proyecto demo para la solicitud de empleo en Metropol.
 |------------------------------------------|------------------------------------------|
 | ![](Resources/screenshot-05.png)         | ![](Resources/screenshot-06.png)         |
 
+| DB                                       | DB                                       |
+|------------------------------------------|------------------------------------------|
+| ![](Resources/screenshot-07.png)         | ![](Resources/screenshot-08.png)         |
+
 &nbsp;
 
 ## Version History
