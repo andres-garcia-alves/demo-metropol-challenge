@@ -8,6 +8,8 @@ Proyecto demo para la solicitud de empleo en Metropol.
 | **BACKEND API**       | https://metropol-backend.azurewebsites.net/api/v1/             |
 | - Endpoint Personas   | https://metropol-backend.azurewebsites.net/api/v1/personas/    |
 | **BACKEND DOCS**      | https://metropol-backend.azurewebsites.net/scalar/v1           |
+| --------------------- | -------------------------------------------------------------- |
+| Repo del proyecto     | https://github.com/andres-garcia-alves/demo-metropol-challenge |
 
 &nbsp;
 
@@ -46,7 +48,9 @@ Proyecto demo para la solicitud de empleo en Metropol.
 - Uso de `AutoMapper` para mapeos entre DTOs y Entidades.
 
 - Patrón de diseño `Repository` para la capa de acceso a datos.
-- Uso de `SQlite` para la DB (por mepa simplicidad, ya que no requiere un server externo).
+
+- Uso de `SQlite` para la DB (por mepa simplicidad, ya que no requiere un server externo).  
+  Se puede utilizar el popular `DB Browser for SQLite` (entre otros) para acceder a la DB.
 
 - Test Unitarios implementados en `MSTest`, la librería oficial de MS.
 
@@ -74,9 +78,6 @@ Proyecto demo para la solicitud de empleo en Metropol.
 - Frontend alojado en `GitHub Pages`.
 - Backend alojado en `Azure App Service`
 
-- Repo del proyecto:  
-  https://github.com/andres-garcia-alves/demo-metropol-challenge
-
 #### - NOTAS
 
 - Hay cosas que obviamente se pueden mejorar, pero ya sobrepasarían el alcance de una demo y de la consigna inicial:
@@ -87,6 +88,8 @@ Proyecto demo para la solicitud de empleo en Metropol.
   - etc.
 
 - Aprovecho el repo de la demo, y los invito a visitar mi GitHub: son 40+ repos con aplicaciones web, desktop, IA, electrónica, videojuegos, etc... y según cada temática utilizando algunas de sus herramientas y tecnologías más relevantes: .NET, frameworks para JavaScript/TypeScript, Python, C/C++, y un largo etc.
+
+- Si se me estuviera escapando algo y lo requieren, avisen, ningún drama en agregarlo/implementarlo.
 
 &nbsp;
 
