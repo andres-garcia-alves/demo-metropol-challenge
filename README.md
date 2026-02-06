@@ -137,6 +137,7 @@ v1.2 (2026.02.02) - Added CI/CD pipeline.
 v1.3 (2026.02.04) - Added Backend base code.  
 v1.4 (2026.02.05) - Minor source code improvements.  
 v1.5 (2026.02.05) - Added Azure deployment.  
+v1.6 (2026.02.06) - Update 'README.md'.  
 
 &nbsp;
 
