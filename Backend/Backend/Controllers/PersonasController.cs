@@ -6,7 +6,7 @@ using FluentValidation;
 namespace Backend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class PersonasController : ControllerBase
     {
         private readonly IPersonaLogic _personaLogic;

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Serilog;
 using Scalar.AspNetCore;
+using Serilog;
 using Backend.BusinessLogic;
 using Backend.BusinessLogic.Interfaces;
 using Backend.BusinessLogic.Validators;
@@ -12,10 +12,10 @@ using Backend.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración de Serilog
+// configuración de Serilog
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
-    .WriteTo.File("../Logs/logs.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File("Logs/logs.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 builder.Host.UseSerilog();
@@ -23,23 +23,23 @@ builder.Host.UseSerilog();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-// Configuración de SQLite
+// configuración de SQLite
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") 
-    ?? "Data Source=DataBase/metropol.db"));
+    ?? "Data Source=metropol.db"));
 
-// Configuración de AutoMapper
+// configuración de AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-// Configuración de FluentValidation
+// configuración de FluentValidation
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<PersonaValidator>();
 
-// Registro de Repositorio y Lógica de Negocio
+// registro de los [Entidad]Repository y los [Entidad]Logic
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPersonaLogic, PersonaLogic>();
 
-// Permitir CORS para el Frontend
+// permitir CORS para el Frontend
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
@@ -50,14 +50,14 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.MapScalarApiReference();
-}
+// habilitar OpenApi y Scalar en todos los entornos para la demo
+app.MapOpenApi();
+app.MapScalarApiReference();
 
-// Asegurar que la DB esté creada
+// redirección predeterminada a la documentación
+app.MapGet("/", () => Results.Redirect("/scalar/v1"));
+
+// asegurar que la DB esté creada
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

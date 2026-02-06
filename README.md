@@ -4,7 +4,10 @@
 
 Proyecto demo para la solicitud de empleo en Metropol.
 
-**LIVE APP**: https://andres-garcia-alves.github.io/demo-metropol-challenge/
+**LIVE APP**: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://andres-garcia-alves.github.io/demo-metropol-challenge/  
+**BACKEND APP**: &nbsp;&nbsp;&nbsp; https://metropol-backend.azurewebsites.net/api/
+  - endpoint personas: https://metropol-backend.azurewebsites.net/api/personas/
+**BACKEND DOCS**: &nbsp; https://metropol-backend.azurewebsites.net/scalar/v1  
 
 &nbsp;
 
@@ -69,7 +72,7 @@ Proyecto demo para la solicitud de empleo en Metropol.
 
 - Implemento **CI/CD** vía `GitHub Actions`.
   - Frontend alojado en `GitHub Pages`.
-  - Backend alojado en <...>
+  - Backend alojado en `Azure App Service`
 
 - Repo del proyecto:  
   https://github.com/andres-garcia-alves/demo-metropol-challenge
@@ -92,21 +95,21 @@ Proyecto demo para la solicitud de empleo en Metropol.
 - SDK .NET 10
 - Para ejecutar el **backend** en local (paso a paso):
 
-  #1. Navegar a la carpeta del proyecto backend
-  <pre>cd ./Backend/Backend</pre>
+  #1. Navegar a la carpeta con el backend del proyecto
+  <pre>cd "./Backend/Backend"</pre>
 
-  #2. Restaurar dependencias y ejecutar
-  <pre>dotnet run</pre>
+  #2. Restaurar dependencias, compilar y ejecutar
+  <pre>dotnet restore  
+  dotnet run</pre>
 
 - Para ejecutar el **frontend**en local (paso a paso):
 
   - Opción A. Instalar la extensión `Live Server` de VSCode (mayor comodidad).
   - Opción B. Navegar a la carpeta del proyecto frontend y doble click en el archivo `index.html` (mayor simpleza).
-    <pre>cd ./Frontend</pre>
 
 - Para ejecutar los test unitarios:
 
-  <pre>dotnet test Backend/UnitTests/UnitTests.csproj</pre>
+  <pre>dotnet test "./Backend/UnitTests/UnitTests.csproj"</pre>
 
 &nbsp;
 
@@ -133,6 +136,7 @@ v1.1 (2026.02.02) - Added validations and responsive design.
 v1.2 (2026.02.02) - Added CI/CD pipeline.  
 v1.3 (2026.02.04) - Added Backend base code.  
 v1.4 (2026.02.05) - Minor source code improvements.  
+v1.5 (2026.02.05) - Added Azure deployment.  
 
 &nbsp;
 

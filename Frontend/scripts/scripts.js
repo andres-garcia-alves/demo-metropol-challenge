@@ -2,9 +2,10 @@
  * scripts.js - Lógica para el Formulario de Registro
  */
 
-// cambiar aquí para usar el backend local o el de azure
-// const BACKEND_URL = "https://localhost:5000/api/";
-const BACKEND_URL = "https://localhost:5000/api/";
+// cambiar entre el backend local o en Azure
+// const BACKEND_URL = "https://metropol-backend.azurewebsites.net/api/v1/";
+const BACKEND_URL = "https://localhost:5000/api/v1/";
+
 
 // inicializa la aplicación cuando cargó el DOM
 document.addEventListener('DOMContentLoaded', () => { inicializar(); });
