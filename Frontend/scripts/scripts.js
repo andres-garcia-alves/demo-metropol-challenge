@@ -8,7 +8,7 @@
 const localHosts = ["", "localhost", "127.0.0.1"];
 const isDevelopment = localHosts.includes(window.location.hostname);
 
-const DEV_URL = "https://localhost:5000/api/v1";
+const DEV_URL = "http://localhost:5000/api/v1";
 const PROD_URL = "https://metropol-backend.azurewebsites.net/api/v1";
 const BACKEND_URL = isDevelopment ? DEV_URL : PROD_URL;
 
