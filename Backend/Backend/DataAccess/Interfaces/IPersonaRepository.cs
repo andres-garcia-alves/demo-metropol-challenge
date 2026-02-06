@@ -6,5 +6,7 @@ namespace Backend.DataAccess.Interfaces
     {
         Task<int> AddAsync(Persona persona);
         Task<IEnumerable<Persona>> GetAllAsync();
+        Task<bool> ExistsByDniAsync(string dni);
+        Task<bool> ExistsByEmailAsync(string email);
     }
 }

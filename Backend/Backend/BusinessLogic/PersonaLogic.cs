@@ -38,7 +38,7 @@ namespace Backend.BusinessLogic
             // mapeo de DTO a Entidad
             var persona = _mapper.Map<Persona>(personaDto);
 
-            // validación de la entidad
+            // validaciones que la entidad esté bien formada
             var validationResult = await _validator.ValidateAsync(persona);
 
             if (!validationResult.IsValid)
@@ -47,6 +47,19 @@ namespace Backend.BusinessLogic
                     personaDto.DNI, string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage)));
                 
                 throw new ValidationException(validationResult.Errors);
+            }
+
+            // validaciones (lógicas) por duplicados
+            if (await _repository.ExistsByDniAsync(persona.DNI))
+            {
+                _logger.LogWarning("Intento de registro con DNI duplicado: {DNI}", persona.DNI);
+                throw new ValidationException("El DNI ingresado ya se encuentra registrado.");
+            }
+
+            if (await _repository.ExistsByEmailAsync(persona.Mail))
+            {
+                _logger.LogWarning("Intento de registro con Email duplicado: {Email}", persona.Mail);
+                throw new ValidationException("El correo electrónico ingresado ya se encuentra en uso.");
             }
 
             // persistencia de los datos

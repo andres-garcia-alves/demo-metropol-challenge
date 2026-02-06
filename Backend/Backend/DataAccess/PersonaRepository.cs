@@ -5,7 +5,7 @@ using Backend.Entities;
 namespace Backend.DataAccess
 {
     /// <summary>
-    /// Patrón 'Repository' para la entidad Persona
+    /// PatrÃ³n 'Repository' para la entidad Persona
     /// </summary>
     public class PersonaRepository : IPersonaRepository
     {
@@ -25,6 +25,16 @@ namespace Backend.DataAccess
         {
             await _context.Personas.AddAsync(persona);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistsByDniAsync(string dni)
+        {
+            return await _context.Personas.AnyAsync(p => p.DNI == dni);
+        }
+
+        public async Task<bool> ExistsByEmailAsync(string email)
+        {
+            return await _context.Personas.AnyAsync(p => p.Mail == email);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Backend.Entities
         public string Sexo { get; set; } = string.Empty;
         public string Mail { get; set; } = string.Empty;
 
-        // Ac· podrÌan ir otras propiedades de la Entidad (que no pasan al DTO)
+        // Ac√° podr√≠an ir otras propiedades de la Entidad (que no pasan al DTO)
         // Por ejemplo: PasswordHash, etc
     }
 }

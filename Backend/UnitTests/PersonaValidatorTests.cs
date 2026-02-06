@@ -49,5 +49,8 @@ namespace UnitTests
             var result = _validator.Validate(persona);
             Assert.IsTrue(result.IsValid);
         }
+
+        // Aquí se deberían de agregar más pruebas ...
+        // validaciones de duplicados, etc.
     }
 }
