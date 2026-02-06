@@ -2,17 +2,23 @@
  * scripts.js - Lógica para el Formulario de Registro
  */
 
-// cambiar entre el backend local o en Azure
-// const BACKEND_URL = "https://metropol-backend.azurewebsites.net/api/v1/";
-const BACKEND_URL = "https://localhost:5000/api/v1/";
+// De la consigna de 'Vanilla JS' (JS puro, sin frameworks, bundlers, etc),
+// se complica utilizar variables de entorno (archivo '.env').
+// Implemento a mano una selección dinámica del backend, basada en la URL del navegador.
+const localHosts = ["", "localhost", "127.0.0.1"];
+const isDevelopment = localHosts.includes(window.location.hostname);
+
+const DEV_URL = "https://localhost:5000/api/v1";
+const PROD_URL = "https://metropol-backend.azurewebsites.net/api/v1";
+const BACKEND_URL = isDevelopment ? DEV_URL : PROD_URL;
 
 
-// inicializa la aplicación cuando cargó el DOM
+// Inicializar la aplicación una vez que haya cargado el DOM
 document.addEventListener('DOMContentLoaded', () => { inicializar(); });
 
 
 /**
- * configura los eventos en los elementos del DOM
+ * Configurar los eventos en los elementos del DOM
  */
 function inicializar() {
 
@@ -50,7 +56,7 @@ function inicializar() {
 
 
 /**
- * Procesa el intento de envío del formulario.
+ * Procesar el intento de envío del formulario.
  * @param {Event} evento - El objeto del evento de envío.
  */
 function manejarEnvio(evento) {
@@ -91,7 +97,7 @@ async function enviarDatos() {
 
     try {
         // enviar los datos a la API
-        const respuesta = await fetch(BACKEND_URL + 'personas', {
+        const respuesta = await fetch(BACKEND_URL + '/personas', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datos)

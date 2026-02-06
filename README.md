@@ -1,12 +1,12 @@
 # Metropol Challenge
 
-&nbsp;
-
 Proyecto demo para la solicitud de empleo en Metropol.
 
 **LIVE APP**: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://andres-garcia-alves.github.io/demo-metropol-challenge/  
-**BACKEND APP**: &nbsp;&nbsp;&nbsp; https://metropol-backend.azurewebsites.net/api/
-  - endpoint personas: https://metropol-backend.azurewebsites.net/api/personas/
+
+**BACKEND API**: &nbsp;&nbsp;&nbsp; https://metropol-backend.azurewebsites.net/api/  
+  endpoint personas: https://metropol-backend.azurewebsites.net/api/personas/  
+
 **BACKEND DOCS**: &nbsp; https://metropol-backend.azurewebsites.net/scalar/v1  
 
 &nbsp;
@@ -36,10 +36,10 @@ Proyecto demo para la solicitud de empleo en Metropol.
 
 - Detalle de la estructura del backend:
   - `Controllers/`: Endpoints de la API.
-  - `DataAccess/`: Contexto de base de datos.
-  - `Entities/`: Modelos de datos para persistencia.
   - `DTOs/`: Objetos de transferencia de datos.
   - `BusinessLogic/`: Mapeos y reglas de validación.
+  - `Entities/`: Modelos de datos para persistencia.
+  - `DataAccess/`: Contexto de base de datos.
 
 - Uso de la librería `FluentValidations` para validación de entidades.
 
@@ -71,20 +71,20 @@ Proyecto demo para la solicitud de empleo en Metropol.
 #### - PROYECTO
 
 - Implemento **CI/CD** vía `GitHub Actions`.
-  - Frontend alojado en `GitHub Pages`.
-  - Backend alojado en `Azure App Service`
+- Frontend alojado en `GitHub Pages`.
+- Backend alojado en `Azure App Service`
 
 - Repo del proyecto:  
   https://github.com/andres-garcia-alves/demo-metropol-challenge
 
 #### - NOTAS
 
-- Hay cosas que obviamente se pueden mejorar, pero que sobrepasarían el alcance de una demo:
-  - Los controllers que hereden de un ControllerBase, centalizando logs y manejo de errores
-  - Usar una DB en servidor aparte, en lugar de una DB embebida
+- Hay cosas que obviamente se pueden mejorar, pero ya sobrepasarían el alcance de una demo y de la consigna inicial:
   - Uso de Caché (según el endpoint en cuestión) para mejorar performance y reducir consumo de recursos.
-  - Versionado de la API (ej. /api/v1/*, /api/v2/*).
-  - etc
+  - Los controllers que hereden de un ControllerBase, centalizando logs y manejo de errores.
+  - Usar una DB en servidor aparte, en lugar de una DB embebida.
+  - PK, índices y constraints en las tablas de la DB.
+  - etc.
 
 - Aprovecho el repo de la demo, y los invito a visitar mi GitHub: son 40+ repos con aplicaciones web, desktop, IA, electrónica, videojuegos, etc... y según cada temática utilizando algunas de sus herramientas y tecnologías más relevantes: .NET, frameworks para JavaScript/TypeScript, Python, C/C++, y un largo etc.
 
